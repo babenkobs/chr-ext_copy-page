@@ -1,0 +1,29 @@
+{
+   "manifest_version": 3,
+   "name": "Copy page html",
+   "version": "1.0",
+   "description": "Копирование html страницы",
+   "icons": {
+       "128": "128.png",
+       "16": "128.png"
+   },
+   "action": {
+       "default_popup": "popup.html"
+   },
+   "content_scripts": [
+       {
+           "matches": [ "<all_urls>" ],
+           "js": [ 
+               "app.js",
+               "translate_scripts/content.js",
+               "edit_scripts/content.js"
+           ]
+       }
+   ],
+   "permissions": [
+       "tabs",
+       "activeTab",
+       "storage",
+       "contextMenus"
+   ]
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ускорение создание сайтов</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+  <style>
+    html,
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      margin: 0;
+      min-height: 180px;
+      width: 380px;
+    }
+    h1 {
+      font-family: 'Menlo', monospace;
+      font-size: 22px;
+      font-weight: 400;
+      margin: 0;
+      color: #2f5876;
+      padding: 10px 10px 0;
+    }
+    .cursor {
+        cursor: pointer;
+        padding: 10px;
+    }
+    .greenBackground {
+        background: #b6ffc9 !important;
+    }
+    .btn {
+        border: 1px solid #000;
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+        margin: 10px;
+        cursor: pointer;
+        font-weight: 700;
+    }
+    .btn:hover {
+        background: #ddd;
+    }
+    input:not(:last-child) {
+        margin-bottom: 5px;
+    }
+    .searchReplace,
+    .cityReplace-block {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ddd;
+        padding: 5px;
+    }
+    .control {
+        font-size: 50px;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+    .searchReplace:hover .control.swap {
+        opacity: 1;
+    }
+    .control.swap {
+        font-size: 35px;
+        opacity: 0;
+        transition: .3s;
+    }
+    .hidden {
+        display: none;
+    }
+    .bg-orange {
+        background: #ffab63;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="btn pointer">Copy Page</div>
+
+  <h1>Search and Replace</h1>
+  <div class="btn" id="btn-search-replace">Replace</div>
+  <div class="cityReplace-block">
+    <div class="citySelects">
+        <select name="citySearch">
+        </select>
+        <select name="cityReplace">
+        </select>
+    </div>
+  </div>
+
+  <div class="searchReplace">
+    <div class="inputs">
+      <input type="text" name="search" placeholder="Search">
+      <input type="text" name="replace" placeholder="Replace">
+    </div>
+    <div class="control swap">⇅</div>
+    <div class="control dublicate">+</div>
+    <div class="control delete">-</div>
+  </div>
+  <br>
+    <script src="popup.js"></script>
+    <script src="city.js"></script>
+    <script src="search_replace/popup.js"></script>
+    <script src="tilda_scripts/popup.js"></script>
+    <script src="ispmgr_scripts/popup.js"></script>
+</body>
+
+</html>
