@@ -10,7 +10,17 @@ async function sendMessage(data, somefunction = ()=>{}) {
 
 document.querySelector('.copypage-btn').onclick = function(){
     sendMessage({"type":'copyPage'}, response=>{
-        console.log(response)
+        this.classList.add('greenBackground')
         navigator.clipboard.writeText(response)
     })
+}
+
+document.querySelector('.editpage-btn').onclick = function(){
+    if (this.classList.contains('greenBackground')) {
+        sendMessage({"type":'notEditPage'})
+        this.classList.remove('greenBackground')
+    } else {
+        sendMessage({"type":'editPage'})
+        this.classList.add('greenBackground')
+    }
 }
