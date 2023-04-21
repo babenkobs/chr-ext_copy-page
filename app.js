@@ -1,3 +1,9 @@
+function delElem(elem) {
+    item = html.querySelector(elem)
+    if (item) {
+        item.remove()
+    }
+}
 function cleanTranslatedHtml(html) {
     // Remove google translate marks in the page
     if (html.classList.length === 1) {
@@ -9,11 +15,13 @@ function cleanTranslatedHtml(html) {
     // Set locale
     locale = document.querySelector('meta[property="og:locale"]')
     if (locale) locale.content = locale.content.replace(/^.{2}/g, html.lang)
-    gttt = html.querySelector('#goog-gt-tt')
+    gttt = html.querySelector('#goog-gt-')
     if (gttt) {
         gttt.remove()
-        html.querySelector('.goog-te-spinner-pos').remove()
-        html.querySelector('link[href="https://translate.googleapis.com/translate_static/css/translateelement.css"]').remove()
+        delElem('.goog-te-spinner-pos')
+        delElem('#goog-gt-')
+        delElem('link[href="https://translate.googleapis.com/translate_static/css/translateelement.css"]')
+        delElem('link[href^="https://www.gstatic.com/"]')
     }
 
     // Translate not translated text
@@ -22,12 +30,27 @@ function cleanTranslatedHtml(html) {
     meta = html.querySelector('meta[property="twitter:title"]')
     if (meta) meta.content = document.querySelector('title').innerHTML
 
+    // Отримання елемента <script> за допомогою класу
+    const ldJson = document.querySelector('.yoast-schema-graph');
+    if (ldJson) {
+        // Розпарсювання JSON з елемента <script>
+        const ldData = JSON.parse(ldJson.textContent);
+
+        // Заміна тексту властивості "name"
+        ldData.name = document.querySelector('title').innerHTML
+
+        // Перезапис JSON з новим текстом
+        ldJson.textContent = JSON.stringify(ldData);
+    }
+
+
     // Remove edit attributes
     document.body.removeAttribute('contenteditable')
     document.designMode='off'
 
     page = new XMLSerializer().serializeToString(document.doctype) + document.getElementsByTagName('html')[0].outerHTML
     page = page.replace(new RegExp('<font style="vertical-align: inherit;">|</font>','g'),'')
+    page = page.replace(new RegExp('banner-1-optin.css\?.*?"','g'),'banner-1-optin.css"')
     return page
 }
 
